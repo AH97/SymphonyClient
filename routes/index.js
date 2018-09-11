@@ -30,7 +30,7 @@ router.get('/signup', function (req, res, next) {
 /* GET accout page. */
 router.get('/myAccount', function (req, res, next) {
     res.render('user/myAccount', {
-        title: 'Username account'
+        userName: req.user.userName
     });
 });
 
