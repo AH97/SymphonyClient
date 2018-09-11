@@ -16,6 +16,7 @@ let routes = require('./routes/index');
 let app = express();
 
 mongoose.connect('localhost:27017/SymphonyStreaming');
+require('./config/passport');
 
 // view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));

@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('example-create-react-app-express:server');
+var debug = require('debug')('symphony-streaming:server');
 var http = require('http');
 
 /**
