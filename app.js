@@ -5,11 +5,17 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let hbs = require('express-handlebars');
+let session = require('express-session');
+let mongoose = require('mongoose');
+let passport = require('passport');
+let flash = require('connect-flash');
+
+
+let routes = require('./routes/index');
 
 let app = express();
 
-// routing
-let routes = require('./routes/index');
+mongoose.connect('localhost:27017/SymphonyStreaming');
 
 // view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
@@ -22,12 +28,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// JSON Formatting
-app.set('json spaces', 2);
-
-// Index route points to /api/v1 as the root
 app.use('/', routes);
 
 // catch 404 and forward to error handler

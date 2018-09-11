@@ -1,47 +1,39 @@
-let express = require('express');
-let router = express.Router();
-let request = require('request-json')
-let client = request.createClient('http://localhost:5000/')
+var express = require('express');
+var router = express.Router();
+var csrf = require('csurf');
 
+var csrfProtection = csrf();
+router.use(csrfProtection);
 
-/* Homepage Routes */
+/* GET home page. */
 router.get('/', function (req, res, next) {
-    client.get('user/')
-    .then(function(response) {
-        res.render('index', { data: response.body })
-    })
+    res.render('index', {
+        title: 'Symphony Streaming'
+    });
 });
 
-/* Login Page Routes*/
+/* GET login page. */
 router.get('/login', function (req, res, next) {
-    res.render('forms/loginForm', {
-        title: 'Symhpony Streaming Login'
+    res.render('loginSignUp/loginForm', {
+        title: 'Symphony Streaming Login'
     });
 });
 
-/* Signup Page Routes */
+/* GET signup page. */
 router.get('/signup', function (req, res, next) {
-    res.render('forms/signupForm', {
-        title: 'Symhpony Streaming Signup'
-    });
-})
-router.post('/signup', function (req, res, next) {
-    fetch('http://localhost:5000/user', { method: 'POST', redirect: 'follow'})
-    .then(response => {
-        res.render('success', {
-            title: 'User has been successfully created!'
-        });
-    })
-    .catch(function(err) {
-        console.info(err + " url: " + url);
-    });
+    res.render('loginSignUp/signupForm', {csrfToken: req.csrfToken()});
+
 });
 
-/* Account Page Routes */
-router.get('/account', function (req, res, next) {
+/* GET signup page. */
+router.get('/myAccount', function (req, res, next) {
     res.render('user/myAccount', {
         title: 'Username account'
     });
+});
+
+router.post('/signup', function (req, res, next) {
+    res.redirect("/");
 });
 
 module.exports = router;
