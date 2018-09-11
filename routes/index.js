@@ -28,7 +28,7 @@ router.get('/signup', function (req, res, next) {
 /* GET signup page. */
 router.get('/myAccount', function (req, res, next) {
     res.render('user/myAccount', {
-        title: 'Username account'
+        userName: req.user.userName
     });
 });
 
