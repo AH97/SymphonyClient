@@ -15,12 +15,8 @@ let routes = require('./routes/index');
 
 let app = express();
 
-<<<<<<< HEAD
 mongoose.connect('localhost:27017/SymphonyStreaming');
 require('./config/passport');
-=======
-mongoose.connect('mongodb://admin:symphonyadmin1@ds153002-a0.mlab.com:53002,ds153002-a1.mlab.com:53002/symphonydb?replicaSet=rs-ds153002');
->>>>>>> 12914796c7b7a4bcb487f462a0e040fbd2f5ebd5
 
 // view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
