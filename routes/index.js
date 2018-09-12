@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
 
 /* GET login page. */
 router.get('/login', function (req, res, next) {
-    res.render('loginSignUp/loginForm', {
+    res.render('user/loginForm', {
         title: 'Symphony Streaming Login'
     });
 });
@@ -24,19 +24,19 @@ router.get('/login', function (req, res, next) {
 /* GET signup page. */
 router.get('/signup', function (req, res, next) {
     let messages = req.flash('error');
-    res.render('loginSignUp/signupForm', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+    res.render('user/signupForm', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 
 });
 
 /* GET accout page. */
-router.get('/myAccount', function (req, res, next) {
-    res.render('user/myAccount', {
+router.get('/account', function (req, res, next) {
+    res.render('user/account', {
         userName: req.user.userName
     });
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-    successRedirect: '/myAccount',
+    successRedirect: '/account',
     failureRedirect: '/signup',
     failureFlash: true
 }));
