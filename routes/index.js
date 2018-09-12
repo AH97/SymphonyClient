@@ -23,7 +23,8 @@ router.get('/login', function (req, res, next) {
 
 /* GET signup page. */
 router.get('/signup', function (req, res, next) {
-    res.render('loginSignUp/signupForm', {csrfToken: req.csrfToken()});
+    let messages = req.flash('error');
+    res.render('loginSignUp/signupForm', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 
 });
 
@@ -35,7 +36,7 @@ router.get('/myAccount', function (req, res, next) {
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-    successRedirect: 'user/myAccount',
+    successRedirect: '/myAccount',
     failureRedirect: '/signup',
     failureFlash: true
 }));
