@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let UserController = require('../controllers/user.controller')
 let csrf = require('csurf');
 let passport = require('passport');
 
@@ -8,9 +9,8 @@ router.use(csrfProtection);
 
 /* GET login page. */
 router.get('/login', function (req, res, next) {
-    res.render('user/loginForm', {
-        title: 'Symphony Streaming Login'
-    });
+    let messages = req.flash('error');
+    res.render('user/loginForm', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
 
 /* GET signup page. */
@@ -23,7 +23,7 @@ router.get('/signup', function (req, res, next) {
 /* GET accout page. */
 router.get('/account', function (req, res, next) {
     res.render('user/account', {
-        userName: req.user.userName
+        //userName: UserController.read() 
     });
 });
 
