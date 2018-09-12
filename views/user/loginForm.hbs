@@ -1,7 +1,14 @@
-<div class="row justify-content-md-center" >
+<div class="row justify-content-md-center">
   <div class="col-md-4 col-md-4-offset-4">
     <h1>Login</h1>
-    <form method="POST" action="login">
+    {{#if hasErrors}}
+    <div class="alert alert-danger">
+      {{# each messages }}
+      <p>{{this}}</p>
+      {{/each}}
+    </div>
+    {{/if}}
+    <form method="POST" action="/user/login">
       <div class="form-group">
         <label for="emailAddress">Email address</label>
         <input type="email" class="form-control" id="emailAddress" name="emailAddress" aria-describedby="emailHelp" placeholder="Enter email">
