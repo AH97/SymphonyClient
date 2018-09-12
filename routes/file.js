@@ -27,4 +27,21 @@ router.get('/file/download', (req, res) => {
         });
 });
 
+app.get('/file/delete', (req, res) => {
+    
+    var filename = req.query.filename;
+    
+    gfs.exist({ filename: filename }, (err, file) => {
+        if (err || !file) {
+            res.status(404).send('File Not Found');
+            return;
+        }
+        
+        gfs.remove({ filename: filename }, (err) => {
+            if (err) res.status(500).send(err);
+            res.send('File Deleted');
+        });
+    });
+});
+
 module.exports = router;
