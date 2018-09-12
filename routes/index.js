@@ -41,4 +41,10 @@ router.post('/signup', passport.authenticate('local.signup', {
     failureFlash: true
 }));
 
+router.get('/upload', function (req, res, next) {
+    res.render('forms/uploadForm', {
+        title: "Upload a file"
+    })
+})
+
 module.exports = router;
