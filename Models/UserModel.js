@@ -21,7 +21,7 @@ userSchema.methods.encryptPassword = function(password){
 };
 
 userSchema.methods.validPassword = function(password){
-    return bcrypt.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.userPassword);
 };
 
 let User = mongoose.model('User', userSchema);

@@ -17,13 +17,19 @@ router.get('/login', function (req, res, next) {
 router.get('/signup', function (req, res, next) {
     let messages = req.flash('error');
     res.render('user/signupForm', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
-
 });
 
-/* GET accout page. */
+/* GET account page. */
 router.get('/account', function (req, res, next) {
     res.render('user/account', {
-        //userName: UserController.read() 
+        userName: req.user.userName
+    });
+});
+
+/* Logout */
+router.get('/logout', function (req, res){
+    req.session.destroy(function (err) {
+        res.redirect('/'); //Inside a callback… bulletproof!
     });
 });
 
@@ -40,3 +46,17 @@ router.post('/login', passport.authenticate('local.login', {
 }));
 
 module.exports = router;
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/');
+}
+
+function notLoggedIn(req, res, next){
+    if(!req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/');
+}
