@@ -2,27 +2,30 @@ let express = require('express');
 let router = express.Router();
 let fileModel = require('../Models/FileModel')
 let mongoose = require('mongoose')
-mongoose.connect('localhost:27017/SymphonyStreaming')
+let schema = mongoose.Schema
+
+// mongoose.connect('localhost:27017/SymphonyStreaming')
+mongoose.connect('mongodb://127.0.0.1/gridFS')
+
 let conn = mongoose.connection
 let path = require('path')
 let Grid = require('gridfs-stream');
 let fs = require('fs');
-let schema = mongoose.Schema
+
+let file = path.join(__dirname, '/../public/mp3/starDestroyer.jpg')
+
+Grid.mongo = mongoose.mongo
 
 
+router.post('/upload', (req, res) => {    
 
-
-router.post('/file/upload', (req, res) => {    
-    let file = path.join(__dirname, '/../public/mp3/gta.mp3')
-
-    Grid.mongo = mongoose.mongo
     
     conn.once('open', function() {
         console.log('Connection open')
         let gfs = Grid(conn.db)
     
         let writestream = gfs.createWriteStream({
-            filename: 'gta.mp3'
+            filename: 'aDifferentNameThatsNotaDumbNamingConvention/jpg'
         });
     
     
@@ -33,7 +36,7 @@ router.post('/file/upload', (req, res) => {
     });
 });
 
-router.get('/file/download', (req, res) => {
+router.get('/download', (req, res) => {
     var filename = req.query.filename;
 
     gfs.exist({ filename: filename }, (err, file) => {
@@ -46,7 +49,7 @@ router.get('/file/download', (req, res) => {
     });
 });
 
-router.get('/file/delete', (req, res) => {
+router.get('/delete', (req, res) => {
     var filename = req.query.filename;
 
     gfs.exist({ filename: filename }, (err, file) => {

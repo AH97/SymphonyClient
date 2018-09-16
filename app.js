@@ -13,6 +13,7 @@ let validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
 let routes = require('./routes/index');
 let userRoutes = require('./routes/user');
+let fileRoutes = require('./routes/file');
 let app = express();
 
 mongoose.connect('localhost:27017/SymphonyStreaming');
@@ -49,6 +50,7 @@ app.use(function(req, res, next) {
 })
 
 app.use('/user', userRoutes);
+app.use('/file', fileRoutes);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
