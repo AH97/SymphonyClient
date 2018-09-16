@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let fileModel = require('../Models/FileModel')
-mongoose.connect('localhost:27017/SymphonyStreaming')
+mongoose.connect('mongodb://admin:symphonyadmin1@ds153002-a0.mlab.com:53002,ds153002-a1.mlab.com:53002/symphonydb?replicaSet=rs-ds153002')
 let conn = mongoose.connection
 let path = require('path')
 let Grid = require('gridfs-stream');

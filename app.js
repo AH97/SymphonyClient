@@ -14,7 +14,7 @@ let routes = require('./routes/index');
 let userRoutes = require('./routes/user');
 let app = express();
 
-mongoose.connect('localhost:27017/SymphonyStreaming');
+mongoose.connect('mongodb://admin:symphonyadmin1@ds153002-a0.mlab.com:53002,ds153002-a1.mlab.com:53002/symphonydb?replicaSet=rs-ds153002');
 require('./config/passport');
 
 // view engine setup
