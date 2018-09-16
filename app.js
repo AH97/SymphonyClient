@@ -15,6 +15,9 @@ let routes = require('./routes/index');
 let userRoutes = require('./routes/user');
 let fileRoutes = require('./routes/file');
 let app = express();
+let methodOverride = require('method-override')
+
+
 
 mongoose.connect('mongodb://admin:symphonyadmin1@ds153002-a0.mlab.com:53002,ds153002-a1.mlab.com:53002/symphonydb?replicaSet=rs-ds153002');
 require('./config/passport');
@@ -29,6 +32,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride('_method'))
 app.use(validator());
 app.use(cookieParser());
 app.use(session({
