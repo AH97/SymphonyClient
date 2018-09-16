@@ -1,13 +1,17 @@
-var express = require('express');
-var router = express.Router();
-var Grid = require('gridfs-stream');
-var fs = require('fs');
-var fileModel = require('../Models/FileModel')
+let express = require('express');
+let router = express.Router();
+let fileModel = require('../Models/FileModel')
+mongoose.connect('localhost:27017/SymphonyStreaming')
+let conn = mongoose.connection
+let path = require('path')
+let Grid = require('gridfs-stream');
+let fs = require('fs');
+
 
 router.post('/file/upload', (req, res) => {
-    // var fileName = req.body.fileName;
-    // var fileDescription = req.body.fileDescription
-    var file = path.join(__dirname, '../public/mp3/gta.mp3')
+    // let fileName = req.body.fileName;
+    // let fileDescription = req.body.fileDescription
+    let file = path.join(__dirname, '../public/mp3/gta.mp3')
     Grid.mongo = mongoose.mongo
 
     conn.once('open', function() {
