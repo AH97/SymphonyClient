@@ -1,6 +1,5 @@
 let express = require('express');
 let router = express.Router();
-let UserController = require('../controllers/user.controller')
 let csrf = require('csurf');
 let passport = require('passport');
 

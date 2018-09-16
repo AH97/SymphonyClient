@@ -10,12 +10,8 @@ let mongoose = require('mongoose');
 let passport = require('passport');
 let flash = require('connect-flash');
 let validator = require('express-validator');
-let mongoStore = require('connect-mongo')(session);
-
-
 let routes = require('./routes/index');
 let userRoutes = require('./routes/user');
-
 let app = express();
 
 mongoose.connect('localhost:27017/SymphonyStreaming');
@@ -33,13 +29,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
-app.use(session({
-  secret: 'mySecret', 
-  resave: false, 
-  saveUninitialized: false,
-  store: new mongoStore({mongooseConnection: mongoose.connection}),
-  cookie: {maxAge: 180 * 60 * 1000}
-}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -54,7 +43,6 @@ app.use(function(req, res, next) {
 app.use('/user', userRoutes);
 app.use('/', routes);
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   let err = new Error('Not Found');
@@ -62,9 +50,6 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
-
-// development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
@@ -85,6 +70,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

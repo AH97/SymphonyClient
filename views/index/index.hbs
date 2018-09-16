@@ -1,46 +1,26 @@
 <div class="container">
     <div class="row">
-        <table class=" table table-responsive table-striped table-bordered">
-            <thead>
-            <tr>
-                <th>Row</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>John</td>
-                <td>Carter</td>
-                <td>johncarter@mail.com</td>
-                <td>John</td>
-                <td>Carter</td>
-                <td>johncarter@mail.com</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Peter</td>
-                <td>Parker</td>
-                <td>peterparker@mail.com</td>
-                <td>Peter</td>
-                <td>Parker</td>
-                <td>peterparker@mail.com</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>John</td>
-                <td>Rambo</td>
-                <td>johnrambo@mail.com</td>
-                <td>John</td>
-                <td>Rambo</td>
-                <td>johnrambo@mail.com</td>
-            </tr>
-            </tbody>
-        </table>
+        <form method="post" action="/file/upload">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="fileName">File Name</label>
+                    <input type="text" class="form-control" id="fileName" name="fileName" placeholder="title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fileDescription">File Description</label>
+                <textarea class="form-control" id="fileDescription" name="fileDescription" rows="3"></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Upload dat shit</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="fileUpload" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="fileUpload">Choose file to Upload boiiiii</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>
