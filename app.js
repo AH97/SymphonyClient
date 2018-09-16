@@ -10,6 +10,7 @@ let mongoose = require('mongoose');
 let passport = require('passport');
 let flash = require('connect-flash');
 let validator = require('express-validator');
+var MongoStore = require('connect-mongo')(session);
 let routes = require('./routes/index');
 let userRoutes = require('./routes/user');
 let app = express();
@@ -29,6 +30,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
+app.use(session({
+  secret: 'mysupersecret', 
+  resave: false, 
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  cookie: { maxAge: 180 * 60 * 1000 }
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
