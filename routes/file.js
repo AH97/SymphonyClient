@@ -4,6 +4,7 @@ const router = express.Router();
 const AWS = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
+const request = require('request');
 const fs = require('fs');
 const path = require('path');
 
@@ -35,5 +36,12 @@ router.get('/', (req, res) => {
 router.post('/', upload.single('upload'), function (req, res, next) {
     res.send("Uploaded!");
 });
+
+router.get('/:name', (req, res) => {
+    let name = req.params.name
+
+    request('https://s3.us-east-2.amazonaws.com/neit-symphony-capstone/'+name+'.mp3')
+    .pipe(res.set('Content-Type', 'audio/mp3'))
+})
 
 module.exports = router
