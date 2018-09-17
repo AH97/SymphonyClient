@@ -1,0 +1,7 @@
+#content {
+    margin: 15px;
+}
+
+form, audio, source {
+    text-align: center;
+}

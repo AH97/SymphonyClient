@@ -4,14 +4,14 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index/index', {
-        title: 'Symphony Streaming',
+        tag: 'Use the search bar below to find a song.',
         name: req.body.name
     });
 });
 
 router.post('/', function (req, res, next) {
     res.render('index/index', {
-        title: req.body.name,
+        tag: req.body.name,
         name: req.body.name
     })
 })

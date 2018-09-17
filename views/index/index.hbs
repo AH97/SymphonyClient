@@ -1,4 +1,4 @@
-<h1>Homepage</h1>
+<h3 style="text-align:center">{{tag}}</h3>
 
 <form method="POST" action="/">
     <input type="text" name="name"/>
@@ -6,7 +6,9 @@
 </form>
 
 {{#if name}}
-<audio controls>
-    <source src="/file/{{name}}" type="audio/mp3">
-</audio> 
+<center style="margin-top:10px">
+    <audio controls>
+        <source src="/file/{{name}}" type="audio/mp3">
+    </audio>
+</center> 
 {{/if}}
