@@ -1,26 +1,22 @@
-<div class="container">
-    <div class="row">
-        <form method="POST" action="/file" enctype="multipart/form-data">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="fileName">File Name</label>
-                    <input type="text" class="form-control" id="fileName" name="fileName" placeholder="title">
+<div class="row justify-content-md-center" >
+  <div class="col-md-4 col-md-4-offset-4">
+
+    <div class="container">
+        <div class="row">
+            <form method="POST" action="/file" enctype="multipart/form-data">
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="fileUpload" aria-describedby="inputGroupFileAddon01" name="upload">
+                        <label class="custom-file-label" for="fileUpload">Choose file to Upload</label>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="fileDescription">File Description</label>
-                <textarea class="form-control" id="fileDescription" name="fileDescription" rows="3"></textarea>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="fileUpload" aria-describedby="inputGroupFileAddon01" name="upload">
-                    <label class="custom-file-label" for="fileUpload">Choose file to Upload</label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary" id="btnFileSubmit">Submit</button>
-        </form>
+                <button type="submit" class="btn btn-primary" id="btnFileSubmit">Submit</button>
+            </form>
+        </div>
     </div>
+</div>
 </div>
